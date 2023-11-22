@@ -74,6 +74,8 @@ export class ApiService {
 
   async validateRefreshFromRequest(token: string) {
     const decodedRefreshToken = this.apiTokenService.decodeRefreshToken(token);
+    if (!decodedRefreshToken) throw new UnauthorizedException('Unauthorized');
+
     const accessToken = this.apiTokenService.signJwtToken(
       decodedRefreshToken.id,
     );
@@ -81,7 +83,7 @@ export class ApiService {
       decodedRefreshToken.id,
       decodedRefreshToken.email,
     );
-    if (!decodedRefreshToken || !accessToken || !refreshToken)
+    if (!accessToken || !refreshToken)
       throw new BadRequestException('Something went wrong');
 
     return {
