@@ -9,8 +9,8 @@ import {
 } from '@nestjs/common';
 import { ApiService } from './api.service';
 import { Response, Request } from 'express';
-import { SignupDto } from './dto/signup.dto';
-import { SigninDto } from './dto/signin.dto';
+import { SignupDto } from './AuthDto/signup.dto';
+import { SigninDto } from './AuthDto/signin.dto';
 import { AuthGuard } from '@nestjs/passport';
 
 @Controller('auth')

@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { TokenService } from 'src/user/token.service';
 import { CalculateDateHelper } from './helpers/date.helper';
-import { CurrentUser } from './dto/current-user.dto';
+import { CurrentUser } from './AuthDto/current-user.dto';
 
 @Injectable()
 export class ApiTokenService {
@@ -30,7 +30,6 @@ export class ApiTokenService {
       expiresIn: `${process.env.REFRESH_TOKEN_EXPIRATION}d`,
     });
     const expiresIn = CalculateDateHelper.getCalculatedDate();
-    console.log(expiresIn);
     await this.tokenService.saveRefreshToken(
       payload.id,
       refreshToken,

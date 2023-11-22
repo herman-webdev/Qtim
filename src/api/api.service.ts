@@ -5,11 +5,11 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { UserService } from 'src/user/user.service';
-import { SignupDto } from './dto/signup.dto';
-import { ApiSignupResponse, ApiSigninResponse } from 'src/utils/types';
+import { SignupDto } from './AuthDto/signup.dto';
+import { ApiSignupResponse, ApiSigninResponse } from 'src/utils/default.types';
 import { PasswordHashHelper } from './helpers/hash.helper';
 import { ApiTokenService } from './api-token.service';
-import { SigninDto } from './dto/signin.dto';
+import { SigninDto } from './AuthDto/signin.dto';
 import { PasswordHashCompareHelper } from './helpers/hash-compare.helper';
 
 @Injectable()
