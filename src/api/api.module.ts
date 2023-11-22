@@ -14,12 +14,17 @@ import { ApiTokenService } from './api-token.service';
 import { JwtStrategyService } from './strategies/jwt-strategy.service';
 import { LocalStrategyService } from './strategies/local-strategy.service';
 import { RefreshStrategyService } from './strategies/refresh-strategy.service';
-
+import { NewsModule } from 'src/news/news.module';
+import { News } from 'src/database/entities/news.entity';
+import { ApiNewsController } from './news.controller';
+import { ApiNewsService } from './api-news.service';
+import { NewsService } from 'src/news/news.service';
 @Module({
   imports: [
     ConfigModule.forRoot({ envFilePath: `.env` }),
-    TypeOrmModule.forFeature([User, Token]),
+    TypeOrmModule.forFeature([User, Token, News]),
     forwardRef(() => UserModule),
+    forwardRef(() => NewsModule),
     PassportModule,
     JwtModule.registerAsync({
       useFactory: async () => ({
@@ -28,10 +33,12 @@ import { RefreshStrategyService } from './strategies/refresh-strategy.service';
       }),
     }),
   ],
-  controllers: [ApiController],
+  controllers: [ApiController, ApiNewsController],
   providers: [
     ApiService,
+    ApiNewsService,
     UserService,
+    NewsService,
     ApiTokenService,
     TokenService,
     JwtStrategyService,
