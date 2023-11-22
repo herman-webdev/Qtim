@@ -1,8 +1,9 @@
-// news.dto.ts
 import { Field, ObjectType } from '@nestjs/graphql';
+import { IsString } from 'class-validator';
 
 @ObjectType()
 export class NewsDTO {
+  @IsString()
   @Field(() => String)
   id: string;
 
