@@ -1,0 +1,38 @@
+version: '3.7'
+services:
+  monolith:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    image: monolith:latest
+    container_name: monolith
+    environment:
+      POSTGRES_PORT: 5432
+      POSTGRES_HOST: postgresdb
+      POSTGRES_SYNCHRONIZE: 'true'
+      POSTGRES_NAME: postgres
+      POSTGRES_USERNAME: postgres
+      POSTGRES_PASSWORD: admin123
+    ports:
+      - 5001:5001
+    depends_on:
+      - postgresdb
+    networks:
+      - web-net
+    restart: always
+
+  postgresdb:
+    image: postgres:latest
+    container_name: postgresdb
+    environment:
+      POSTGRES_NAME: postgres
+      POSTGRES_USERNAME: postgres
+      POSTGRES_PASSWORD: admin123
+    ports:
+      - '5432:5432'
+    networks:
+      - web-net
+
+networks:
+  web-net:
+    driver: bridge
