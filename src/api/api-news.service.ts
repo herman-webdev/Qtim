@@ -18,6 +18,10 @@ import { DeleteNewsDto } from './NewsDto/delete.dto';
 export class ApiNewsService {
   constructor(private readonly newsService: NewsService) {}
 
+  async getAll(): Promise<NewsDTO[]> {
+    return await this.newsService.findAll();
+  }
+
   async create(
     userId: string,
     createNewsDto: CreateNewsDto,
@@ -26,10 +30,6 @@ export class ApiNewsService {
     if (!record) throw new BadRequestException('Something went wrong');
 
     return record;
-  }
-
-  async getAll(): Promise<NewsDTO[]> {
-    return await this.newsService.findAll();
   }
 
   async update(
