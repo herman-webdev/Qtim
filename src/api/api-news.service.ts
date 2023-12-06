@@ -3,13 +3,13 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { NewsService } from 'src/news/news.service';
+import { NewsService } from '../news/news.service';
 import { CreateNewsDto } from './NewsDto/create-news.dto';
 import {
   ApiCreateNewsResponse,
   ApiDeleteNewsResponse,
   ApiUpdateNewsResponse,
-} from 'src/utils/default.types';
+} from '../utils/default.types';
 import { NewsDTO } from './NewsDto/news.dto';
 import { UpdateNewsDto } from './NewsDto/update-news.dto';
 import { DeleteNewsDto } from './NewsDto/delete.dto';

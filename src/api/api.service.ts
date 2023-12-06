@@ -4,9 +4,9 @@ import {
   Injectable,
   UnauthorizedException,
 } from '@nestjs/common';
-import { UserService } from 'src/user/user.service';
+import { UserService } from '../user/user.service';
 import { SignupDto } from './AuthDto/signup.dto';
-import { ApiSignupResponse, ApiSigninResponse } from 'src/utils/default.types';
+import { ApiSignupResponse, ApiSigninResponse } from '../utils/default.types';
 import { PasswordHashHelper } from './helpers/hash.helper';
 import { ApiTokenService } from './api-token.service';
 import { SigninDto } from './AuthDto/signin.dto';
@@ -72,7 +72,9 @@ export class ApiService {
     };
   }
 
-  async validateRefreshFromRequest(token: string) {
+  async validateRefreshFromRequest(
+    token: string,
+  ): Promise<{ accessToken: string; refreshToken: string }> {
     const decodedRefreshToken = this.apiTokenService.decodeRefreshToken(token);
     if (!decodedRefreshToken) throw new UnauthorizedException('Unauthorized');
 

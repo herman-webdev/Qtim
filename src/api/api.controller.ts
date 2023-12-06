@@ -7,11 +7,11 @@ import {
   Res,
   UseGuards,
 } from '@nestjs/common';
-import { ApiService } from './api.service';
 import { Response, Request } from 'express';
+import { AuthGuard } from '@nestjs/passport';
+import { ApiService } from './api.service';
 import { SignupDto } from './AuthDto/signup.dto';
 import { SigninDto } from './AuthDto/signin.dto';
-import { AuthGuard } from '@nestjs/passport';
 
 @Controller('auth')
 export class ApiController {
@@ -29,8 +29,8 @@ export class ApiController {
     res.status(200).json(user);
   }
 
-  @UseGuards(AuthGuard('local'))
   @Post('signin')
+  @UseGuards(AuthGuard('local'))
   async signin(
     @Body() signinDto: SigninDto,
     @Res({ passthrough: true }) res: Response,
@@ -42,8 +42,8 @@ export class ApiController {
     res.status(200).json(user);
   }
 
-  @UseGuards(AuthGuard('refresh'))
   @Get('refresh')
+  @UseGuards(AuthGuard('refresh'))
   async refresh(
     @Req() req: Request,
     @Res({ passthrough: true }) res: Response,
@@ -57,8 +57,8 @@ export class ApiController {
     res.status(200).json(checkToken);
   }
 
-  @UseGuards(AuthGuard('jwt'))
   @Get('user')
+  @UseGuards(AuthGuard('jwt'))
   async getUser(@Req() req: any, @Res() res: Response) {
     return res.status(200).json({ id: req.user.id });
   }

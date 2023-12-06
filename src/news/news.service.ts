@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { News } from 'src/database/entities/news.entity';
+import { News } from '../database/entities/news.entity';
 import { EntityManager, Repository, DeepPartial } from 'typeorm';
-import { UpdateNewsDto } from 'src/api/NewsDto/update-news.dto';
-import { CreateNewsDto } from 'src/api/NewsDto/create-news.dto';
+import { UpdateNewsDto } from '../api/NewsDto/update-news.dto';
+import { CreateNewsDto } from '../api/NewsDto/create-news.dto';
 import { NewsDTO } from '../api/NewsDto/news.dto';
 
 @Injectable()

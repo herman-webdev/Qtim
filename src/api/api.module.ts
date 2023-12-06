@@ -2,23 +2,23 @@ import { Module, forwardRef } from '@nestjs/common';
 import { ApiService } from './api.service';
 import { ApiController } from './api.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from 'src/database/entities/user.entity';
-import { Token } from 'src/database/entities/token.entity';
+import { User } from '../database/entities/user.entity';
+import { Token } from '../database/entities/token.entity';
 import { UserModule } from 'src/user/user.module';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule } from '@nestjs/config';
-import { UserService } from 'src/user/user.service';
-import { TokenService } from 'src/user/token.service';
+import { UserService } from '../user/user.service';
+import { TokenService } from '../user/token.service';
 import { ApiTokenService } from './api-token.service';
 import { JwtStrategyService } from './strategies/jwt-strategy.service';
 import { LocalStrategyService } from './strategies/local-strategy.service';
 import { RefreshStrategyService } from './strategies/refresh-strategy.service';
-import { NewsModule } from 'src/news/news.module';
-import { News } from 'src/database/entities/news.entity';
+import { NewsModule } from '../news/news.module';
+import { News } from '../database/entities/news.entity';
 import { ApiNewsController } from './news.controller';
 import { ApiNewsService } from './api-news.service';
-import { NewsService } from 'src/news/news.service';
+import { NewsService } from '../news/news.service';
 @Module({
   imports: [
     ConfigModule.forRoot({ envFilePath: `.env` }),
