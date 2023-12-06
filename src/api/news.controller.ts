@@ -14,6 +14,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { ApiNewsService } from './api-news.service';
 import { CreateNewsDto } from './NewsDto/create-news.dto';
 import { UpdateNewsDto } from './NewsDto/update-news.dto';
+import { DeleteNewsDto } from './NewsDto/delete.dto';
 
 @Controller('news')
 export class ApiNewsController {
@@ -25,8 +26,8 @@ export class ApiNewsController {
     res.status(200).json(allNews);
   }
 
-  @UseGuards(AuthGuard('jwt'))
   @Post('create')
+  @UseGuards(AuthGuard('jwt'))
   async create(
     @Req() req: any,
     @Body() creteNewsDto: CreateNewsDto,
@@ -36,8 +37,8 @@ export class ApiNewsController {
     res.status(200).json(user);
   }
 
-  @UseGuards(AuthGuard('jwt'))
   @Put('update')
+  @UseGuards(AuthGuard('jwt'))
   async update(
     @Req() req: any,
     @Body() updateNewsDto: UpdateNewsDto,
@@ -47,14 +48,14 @@ export class ApiNewsController {
     res.status(200).json(record);
   }
 
-  @UseGuards(AuthGuard('jwt'))
   @Delete('delete')
+  @UseGuards(AuthGuard('jwt'))
   async delete(
     @Req() req: any,
-    @Body() updateNewsDto: UpdateNewsDto,
+    @Body() deleteNewsDto: DeleteNewsDto,
     @Res({ passthrough: true }) res: Response,
   ) {
-    const record = await this.apiNewsService.delete(req.user.id, updateNewsDto);
+    const record = await this.apiNewsService.delete(req.user.id, deleteNewsDto);
     res.status(200).json(record);
   }
 }
