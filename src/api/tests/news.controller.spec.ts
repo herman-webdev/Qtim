@@ -3,7 +3,7 @@ import { Request, Response } from 'express';
 import { ApiNewsController } from '../news.controller';
 import { ApiNewsService } from '../api-news.service';
 import { JwtStrategyService } from '../strategies/jwt-strategy.service';
-import { uuidv4 } from '../helpers/uuid.test';
+import { uuidv4 } from './helpers/uuid.test';
 import { CreateNewsDto } from '../NewsDto/create-news.dto';
 import { UpdateNewsDto } from '../NewsDto/update-news.dto';
 import { NewsDTO } from '../NewsDto/news.dto';
