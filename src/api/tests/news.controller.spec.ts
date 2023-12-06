@@ -7,6 +7,7 @@ import { uuidv4 } from '../helpers/uuid.test';
 import { CreateNewsDto } from '../NewsDto/create-news.dto';
 import { UpdateNewsDto } from '../NewsDto/update-news.dto';
 import { NewsDTO } from '../NewsDto/news.dto';
+import { DeleteNewsDto } from '../NewsDto/delete.dto';
 
 describe('NewsController', () => {
   let controller: ApiNewsController;
@@ -115,21 +116,25 @@ describe('NewsController', () => {
     );
   });
 
-  //   it('delete: post should be deleted', async () => {
-  //     const mockRequest = {
-  //       user: { id: uuidv4() },
-  //     } as unknown as Request;
+  it('delete: post should be deleted', async () => {
+    const mockRequest = {
+      user: { id: uuidv4() },
+    } as unknown as Request;
 
-  //     const deleteNewsDto: DeleteNewsDto = {
-  //       id: uuidv4(),
-  //     };
+    const deleteNewsDto: DeleteNewsDto = {
+      id: uuidv4(),
+    };
 
-  //     const expectedApiResponse = {
-  //       id: deleteNewsDto.id,
-  //     };
+    const expectedApiResponse = {
+      id: deleteNewsDto.id,
+    };
 
-  //     mockApiService.delete.mockResolvedValue(expectedApiResponse);
+    mockApiNewsService.delete.mockResolvedValue(expectedApiResponse);
 
-  //     await controller.delete(mockRequest, deleteNewsDto, mockResponse);
-  //   });
+    await controller.delete(mockRequest, deleteNewsDto, mockResponse);
+
+    expect(mockResponse.json).toHaveBeenCalledWith(
+      expect.objectContaining(expectedApiResponse),
+    );
+  });
 });
