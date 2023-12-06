@@ -1,5 +1,4 @@
 import { HttpStatus } from '@nestjs/common';
-import { SignupDto } from '../src/api/AuthDto/signup.dto';
 import * as request from 'supertest';
 import { generateRandomEmail } from './helpers/randomString';
 
@@ -8,7 +7,7 @@ describe('ApiController (e2e)', () => {
 
   let tokens: { accessToken: string; refreshToken: string };
 
-  const mockUser: SignupDto = {
+  const mockUser = {
     email: generateRandomEmail(),
     password: 'Password123!',
   };

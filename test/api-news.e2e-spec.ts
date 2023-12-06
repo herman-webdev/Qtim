@@ -1,10 +1,6 @@
 import { HttpStatus } from '@nestjs/common';
-import { SignupDto } from '../src/api/AuthDto/signup.dto';
 import * as request from 'supertest';
-import { CreateNewsDto } from '../src/api/NewsDto/create-news.dto';
 import { generateRandomEmail } from './helpers/randomString';
-import { UpdateNewsDto } from 'src/api/NewsDto/update-news.dto';
-import { DeleteNewsDto } from 'src/api/NewsDto/delete.dto';
 
 describe('ApiNewsController (e2e)', () => {
   const authUrl = `http://localhost:5001/auth/`;
@@ -13,23 +9,23 @@ describe('ApiNewsController (e2e)', () => {
   let tokens: { accessToken: string; refreshToken: string };
   let postId: string;
 
-  const mockUser: SignupDto = {
+  const mockUser = {
     email: generateRandomEmail(),
     password: 'Password123!',
   };
 
-  const mockPost: CreateNewsDto = {
+  const mockPost = {
     title: 'some-title',
     description: 'some-description',
   };
 
-  const updatePost: UpdateNewsDto = {
+  const updatePost = {
     id: postId,
     title: 'some-new-title',
     description: 'some-new-description',
   };
 
-  const deletePost: DeleteNewsDto = {
+  const deletePost = {
     id: postId,
   };
 
