@@ -9,10 +9,10 @@ import {
   Res,
   UseGuards,
 } from '@nestjs/common';
-import { ApiNewsService } from './api-news.service';
-import { CreateNewsDto } from './NewsDto/create-news.dto';
 import { Response } from 'express';
 import { AuthGuard } from '@nestjs/passport';
+import { ApiNewsService } from './api-news.service';
+import { CreateNewsDto } from './NewsDto/create-news.dto';
 import { UpdateNewsDto } from './NewsDto/update-news.dto';
 
 @Controller('news')

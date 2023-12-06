@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { TokenService } from 'src/user/token.service';
+import { TokenService } from '../user/token.service';
 import { CalculateDateHelper } from './helpers/date.helper';
 import { CurrentUser } from './AuthDto/current-user.dto';
 

@@ -1,8 +1,8 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { NewsService } from './news.service';
-import { News } from 'src/database/entities/news.entity';
-import { CreateNewsDto } from 'src/api/NewsDto/create-news.dto';
-import { UpdateNewsDto } from 'src/api/NewsDto/update-news.dto';
+import { News } from '../database/entities/news.entity';
+import { CreateNewsDto } from '../api/NewsDto/create-news.dto';
+import { UpdateNewsDto } from '../api/NewsDto/update-news.dto';
 import { NewsDTO } from '../api/NewsDto/news.dto';
 
 @Resolver(() => News)

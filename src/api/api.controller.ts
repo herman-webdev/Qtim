@@ -7,11 +7,11 @@ import {
   Res,
   UseGuards,
 } from '@nestjs/common';
-import { ApiService } from './api.service';
 import { Response, Request } from 'express';
+import { AuthGuard } from '@nestjs/passport';
+import { ApiService } from './api.service';
 import { SignupDto } from './AuthDto/signup.dto';
 import { SigninDto } from './AuthDto/signin.dto';
-import { AuthGuard } from '@nestjs/passport';
 
 @Controller('auth')
 export class ApiController {
