@@ -1,13 +1,13 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { Request, Response } from 'express';
-import { ApiNewsController } from '../news.controller';
-import { ApiNewsService } from '../api-news.service';
-import { JwtStrategyService } from '../strategies/jwt-strategy.service';
-import { uuidv4 } from './helpers/uuid.test';
-import { CreateNewsDto } from '../NewsDto/create-news.dto';
-import { UpdateNewsDto } from '../NewsDto/update-news.dto';
-import { NewsDTO } from '../NewsDto/news.dto';
-import { DeleteNewsDto } from '../NewsDto/delete.dto';
+import { ApiNewsController } from '../../news.controller';
+import { ApiNewsService } from '../../api-news.service';
+import { JwtStrategyService } from '../../strategies/jwt-strategy.service';
+import { uuidv4 } from '../helpers/uuid.test';
+import { CreateNewsDto } from '../../NewsDto/create-news.dto';
+import { UpdateNewsDto } from '../../NewsDto/update-news.dto';
+import { NewsDTO } from '../../NewsDto/news.dto';
+import { DeleteNewsDto } from '../../NewsDto/delete.dto';
 
 describe('NewsController', () => {
   let controller: ApiNewsController;

@@ -1,6 +1,6 @@
 import { HttpStatus } from '@nestjs/common';
 import * as request from 'supertest';
-import { generateRandomEmail } from './helpers/randomString';
+import { generateRandomEmail } from './helpers/randomEmail';
 
 describe('ApiNewsController (e2e)', () => {
   const authUrl = `http://localhost:5001/auth/`;
