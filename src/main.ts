@@ -6,7 +6,7 @@ import { HttpExceptionFilter } from './exceptions/http.exception';
 import * as cookieParser from 'cookie-parser';
 
 async function bootstrap() {
-  const port = process.env.PORT || 5000;
+  const port = process.env.PORT || 5001;
   const host = process.env.HOST || 'localhost';
   const baseUrl = `http://${host}:${port}`;
 
