@@ -48,87 +48,95 @@ describe('ApiTokenService', () => {
     expect(apiTokenService).toBeDefined();
   });
 
-  it('should sign a JWT token with the provided id', () => {
-    const user = {
-      id: uuid,
-      email: randomEmail,
-    };
-    const expectedPayload = { id: user.id };
-    const expectedToken = 'mockedJwtToken';
+  describe('create JWT', () => {
+    it('should sign a JWT token with the provided id', () => {
+      const user = {
+        id: uuid,
+        email: randomEmail,
+      };
+      const expectedPayload = { id: user.id };
+      const expectedToken = 'mockedJwtToken';
 
-    jest.spyOn(jwtService, 'sign').mockReturnValue(expectedToken);
-    const result = apiTokenService.signJwtToken(user.id);
+      jest.spyOn(jwtService, 'sign').mockReturnValue(expectedToken);
+      const result = apiTokenService.signJwtToken(user.id);
 
-    expect(result).toBe(expectedToken);
-    expect(jwtService.sign).toHaveBeenCalledWith(expectedPayload);
+      expect(result).toBe(expectedToken);
+      expect(jwtService.sign).toHaveBeenCalledWith(expectedPayload);
+    });
   });
 
-  it('should decode a refresh token and return id and email', async () => {
-    const user = {
-      id: uuid,
-      email: randomEmail,
-    };
-    const refreshToken = await apiTokenService.createRefreshToken(
-      user.id,
-      user.email,
-    );
+  describe('decode refresh', () => {
+    it('should decode a refresh token and return id and email', async () => {
+      const user = {
+        id: uuid,
+        email: randomEmail,
+      };
+      const refreshToken = await apiTokenService.createRefreshToken(
+        user.id,
+        user.email,
+      );
 
-    const expectedPayload = { id: user.id, email: user.email };
-    jest.spyOn(jwtService, 'decode').mockReturnValue(expectedPayload);
+      const expectedPayload = { id: user.id, email: user.email };
+      jest.spyOn(jwtService, 'decode').mockReturnValue(expectedPayload);
 
-    const result = apiTokenService.decodeRefreshToken(refreshToken);
+      const result = apiTokenService.decodeRefreshToken(refreshToken);
 
-    expect(result).toEqual(expectedPayload);
-    expect(jwtService.decode).toHaveBeenCalledWith(refreshToken);
+      expect(result).toEqual(expectedPayload);
+      expect(jwtService.decode).toHaveBeenCalledWith(refreshToken);
+    });
   });
 
-  it('should create a refresh token', async () => {
-    const user = {
-      id: uuid,
-      email: randomEmail,
-    };
+  describe('create refresh', () => {
+    it('should create a refresh token', async () => {
+      const user = {
+        id: uuid,
+        email: randomEmail,
+      };
 
-    jest
-      .spyOn(CalculateDateHelper, 'getCalculatedDate')
-      .mockReturnValue(new Date());
+      jest
+        .spyOn(CalculateDateHelper, 'getCalculatedDate')
+        .mockReturnValue(new Date());
 
-    const expectedToken = 'mockedRefreshToken';
-    jest.spyOn(jwtService, 'sign').mockReturnValue(expectedToken);
+      const expectedToken = 'mockedRefreshToken';
+      jest.spyOn(jwtService, 'sign').mockReturnValue(expectedToken);
 
-    const result = await apiTokenService.createRefreshToken(
-      user.id,
-      user.email,
-    );
+      const result = await apiTokenService.createRefreshToken(
+        user.id,
+        user.email,
+      );
 
-    expect(result).toBe(expectedToken);
-    expect(jwtService.sign).toHaveBeenCalledWith(
-      { id: user.id, email: user.email },
-      { expiresIn: '3d' },
-    );
+      expect(result).toBe(expectedToken);
+      expect(jwtService.sign).toHaveBeenCalledWith(
+        { id: user.id, email: user.email },
+        { expiresIn: '3d' },
+      );
+    });
   });
 
-  it('should update a refresh token', async () => {
-    const user = {
-      id: uuid,
-      email: randomEmail,
-    };
+  describe('update refresh', () => {
+    it('should update a refresh token', async () => {
+      const user = {
+        id: uuid,
+        email: randomEmail,
+      };
 
-    jest
-      .spyOn(CalculateDateHelper, 'getCalculatedDate')
-      .mockReturnValue(new Date());
+      jest
+        .spyOn(CalculateDateHelper, 'getCalculatedDate')
+        .mockReturnValue(new Date());
 
-    const expectedToken = 'mockedRefreshToken';
-    jest.spyOn(jwtService, 'sign').mockReturnValue(expectedToken);
+      const expectedToken = 'mockedRefreshToken';
+      jest.spyOn(jwtService, 'sign').mockReturnValue(expectedToken);
 
-    const result = await apiTokenService.updateRefreshToken(
-      user.id,
-      user.email,
-    );
+      const result = await apiTokenService.updateRefreshToken(
+        user.id,
+        user.email,
+      );
 
-    expect(result).toBe(expectedToken);
-    expect(jwtService.sign).toHaveBeenCalledWith(
-      { id: user.id, email: user.email },
-      { expiresIn: '3d' },
-    );
+      expect(result).toBe(expectedToken);
+      expect(jwtService.sign).toHaveBeenCalledWith(
+        { id: user.id, email: user.email },
+        { expiresIn: '3d' },
+      );
+    });
   });
 });
