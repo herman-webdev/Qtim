@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { ApiController } from '../../api.controller';
 import { ApiService } from '../../api.service';
 import { Request, Response } from 'express';
-import { uuidv4 } from '../helpers/uuid.test';
+import { uuidv4 } from '../helpers/uuid';
 import { LocalStrategyService } from '../../strategies/local-strategy.service';
 import { JwtStrategyService } from '../../strategies/jwt-strategy.service';
 import { RefreshStrategyService } from '../../strategies/refresh-strategy.service';

@@ -3,7 +3,7 @@ import { ApiService } from '../../api.service';
 import { UserService } from '../../../user/user.service';
 import { ApiTokenService } from '../../api-token.service';
 import { generateRandomEmail } from '../helpers/randomEmail';
-import { uuidv4 } from '../helpers/uuid.test';
+import { uuidv4 } from '../helpers/uuid';
 import {
   BadRequestException,
   ConflictException,
